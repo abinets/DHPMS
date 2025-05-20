@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_09_212429) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_20_191117) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "account_invitations", force: :cascade do |t|
     t.bigint "account_id", null: false
@@ -136,6 +136,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_09_212429) do
   create_table "inbound_webhooks", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "metrics", force: :cascade do |t|
+    t.integer "value"
+    t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

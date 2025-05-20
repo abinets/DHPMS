@@ -1,0 +1,37 @@
+<%= content_for :title, t(".title", id: @metric.id) %>
+<%= turbo_stream_from @metric %>
+
+<div class="container mx-auto max-w-2xl px-4 py-8">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="h2">
+      <%= link_to Metric.model_name.human(count: 2), metrics_path, class: "text-gray-900 dark:text-white hover:text-primary-500 dark:hover:text-primary-400" %>
+      <span class="text-gray-400 dark:text-gray-600 font-light mx-2">\</span>
+      <%= t(".title_short", id: @metric.id) %>
+    </h1>
+    <div>
+      <%= link_to t("scaffold.actions.edit"), edit_metric_path(@metric), class: "btn btn-white mr-2" %>
+      <%= link_to t("back"), metrics_path, class: "btn btn-white" %>
+    </div>
+  </div>
+
+  <div class="bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-lg shadow-md">
+    <dl class="divide-y divide-gray-200 dark:divide-gray-700">
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= Metric.human_attribute_name(:value) %></dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2"><%= @metric.value %></dd>
+      </div>
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= Metric.human_attribute_name(:time) %></dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2"><%= l @metric.time, format: :long %></dd>
+      </div>
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= Metric.human_attribute_name(:created_at) %></dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2"><%= l @metric.created_at, format: :long %></dd>
+      </div>
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= Metric.human_attribute_name(:updated_at) %></dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2"><%= l @metric.updated_at, format: :long %></dd>
+      </div>
+    </dl>
+  </div>
+</div>
